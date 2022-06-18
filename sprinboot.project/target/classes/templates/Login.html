@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="LoginStyle.css"/>
+<script>
+	
+	function validateUserName()
+	{
+		var email = document.getElementById("txtEmail").value;
+		
+		if((email == "") || (email == null))
+			{
+				alert("Please enter valid user name");
+				return false;
+			}
+			
+		return true;
+	}
+	
+	function validatePassword()
+	{
+		var password = document.getElementById("txtpassword").value;
+		
+		if((password.length > 8))
+			{
+				alert("Please enter the correct password")
+				return false;
+			}
+		return true;
+	}
+	
+	function validateAll()
+	{
+		if(validateUserName() && validatePassword())
+			{
+				
+			}
+		else
+			{
+				event.preventDefault();
+			}
+	}
+
+</script>
+</head>
+
+<body>
+<br><br><br><br><br><br>
+<form action="/ValidateAdmin/Admin:${Admin.AdminName}" method="post">
+<table width="293" height="410" border="0" align="center">
+	  <tbody>
+		<tr>
+	      <td height="54"><h2>Admin Login</h2></td>
+        </tr>
+	    <tr>
+	      <td height="60"><label for="email"><b>Admin Name</b></label>
+    		<input type="text" placeholder="Admin Name" name="txtName" id="txtName" required>
+		  </td>
+        </tr>
+	    <tr>
+	      <td height="90"><label for="password"><b>Password</b></label>
+    		<input type="password" placeholder="Enter Password" name="txtpassword" id="txtpassword" required></td>
+        </tr>
+	    <tr>
+	      <td height="52"><button type="submit" name="btnsubmit" id="btnsubmit" onClick="validateAll()">Login</button><br><br>
+		  </td>
+        </tr>
+  </tbody>
+</table>
+</form>
+</body>
+</html>

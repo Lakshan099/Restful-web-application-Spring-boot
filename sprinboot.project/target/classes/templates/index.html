@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pharmacy Lanka</title>
+		<style>
+			table, th, td {
+			   border: 1px solid black;
+			   border-spacing: 0px;
+			}
+			th, td {
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body style="background-color: #ccc;">
+		<h2>Medicine List</h2>
+		<form action="/index" method="POST">
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>				
+					<th>MedicineName</th>
+					<th>Description</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					<th>ExDate</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="item:${itemList}">
+					<td th:text="${item.id}"></td>				
+					<td th:text="${item.MedicineName}"></td>
+					<td th:text="${item.Description}"></td>
+					<td th:text="${item.Quantity}"></td>
+					<td th:text="${item.Price}"></td>
+					<td th:text="${item.ExDate}"></td>
+					<td><form action="/delete/item:${itemList}" method="Delete"><input type="submit" value="Delete"  /></form></td>
+				</tr>
+			</tbody>
+		</table>
+		</form>
+		<br />
+		
+		<h2>Add Medicine</h2>
+		<form action="/addItemMedi" method="POST">
+			Id : <input type="text" id="id" name="id" /><br /><br />
+			MedicineName : <input type="text" id="MedicineName" name="MedicineName" /><br /><br />
+			Description : <textarea rows="5" cols="70" id="Description" name="Description" ></textarea><br /><br />	
+			Quantity : <input type="text" id="Quantity" name="Quantity" /><br /><br />
+			Price : <input type="text" id="Price" name="Price" /><br /><br />
+			ExDate : <input type="text" id="ExDate" name="ExDate" /><br /><br />
+			<input type="submit" value="Add" />
+		</form><br><br><br><br>
+		
+		
+		<h2>Search for Medicine</h2>
+		<form action="/search" method="POST">
+			<input type="text" name="search" id="search" th:value="${search}" />
+			<input type="submit" value="Search" />
+		</form><br><br><br><br>
+		
+		
+		<h2>Update Medicine</h2>
+		<form action="/UpdateItem/item:${item.id}" method="PUT">
+			Id : <input type="text" id="id" name="id" /><br /><br />
+			MedicineName : <input type="text" id="MedicineName" name="MedicineName" /><br /><br />
+			Description : <textarea rows="5" cols="70" id="Description" name="Description" ></textarea><br /><br />	
+			Quantity : <input type="text" id="Quantity" name="Quantity" /><br /><br />
+			Price : <input type="text" id="Price" name="Price" /><br /><br />
+			ExDate : <input type="text" id="ExDate" name="ExDate" /><br /><br />
+			<input type="submit" value="Update" />
+		</form>
+	</body>
+</html>
